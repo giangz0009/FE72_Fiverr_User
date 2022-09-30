@@ -14,7 +14,12 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<p>Home page</p>} />
+            <Route
+              index
+              element={
+                <p className="text-3xl font-bold underline">Home page</p>
+              }
+            />
             <Route path="jobsList" element={<p>Danh sách công việc</p>} />
           </Route>
         </Routes>

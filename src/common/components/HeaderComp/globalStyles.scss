@@ -1,0 +1,37 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.header {
+  .headerMain {
+    min-height: $mainHeaderHeight;
+    & > .MuiToolbar-root {
+      min-height: $mainHeaderHeight;
+      .headerMainNavPages {
+        p {
+          cursor: pointer;
+          transition: 0.4s;
+          font-weight: 600;
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
+      .headerMainSettings {
+        button {
+          display: inline-block;
+          font-size: 16px;
+          text-transform: capitalize;
+          transition: 0.4s;
+          margin-inline: 8px;
+          &:nth-child(2) {
+            padding: 2px 6px !important;
+            @include primaryOutlined();
+          }
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
+    }
+  }
+}

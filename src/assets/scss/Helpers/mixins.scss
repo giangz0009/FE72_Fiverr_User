@@ -1,0 +1,20 @@
+@import "./variables.scss";
+
+@mixin primaryOutlined {
+  border: 2px solid $primaryColor;
+  color: $primaryColor;
+  transition: 0.4s;
+  &:hover {
+    background-color: $primaryColor;
+    color: #fff;
+  }
+}
+
+@mixin primaryContained {
+  background-color: $primaryColor;
+  color: #fff;
+  transition: 0.4s;
+  &:hover {
+    background-color: $primaryColorHover;
+  }
+}

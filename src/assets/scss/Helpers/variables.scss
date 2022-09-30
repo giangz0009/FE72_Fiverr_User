@@ -1,0 +1,12 @@
+@import "./changeVariables.scss";
+
+// Header
+$mainHeaderHeight: var(--mainHeaderHeight);
+
+// color
+$primaryColor: rgb(29, 191, 115);
+$primaryColorHover: rgb(25, 164, 99);
+$whiteColor: #fff;
+
+$c-gray-700: #62646a;
+$c-gray-400: #b5b6ba;

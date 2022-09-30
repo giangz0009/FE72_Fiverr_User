@@ -1,0 +1,70 @@
+@import "assets/scss/Helpers/variables.scss";
+
+.headerMainNavPage {
+  p {
+    svg {
+      transition: transform 0.4s;
+    }
+  }
+  &.dropDown {
+    p {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+.headerMainSubMenu {
+  margin-top: calc($mainHeaderHeight - 20px);
+  .MuiList-root {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    .MuiMenuItem-root {
+      width: 50%;
+      padding: 0;
+      display: block;
+      min-height: unset;
+      & > div {
+        padding: 4px 20px;
+        h3 {
+          color: $c-gray-700;
+          font-weight: 500;
+          font-size: 17px;
+          text-align: left;
+          transition: 0.4s;
+        }
+        p {
+          color: $c-gray-400;
+          font-size: 16px;
+          font-weight: 400;
+          text-align: left;
+          white-space: normal;
+          transition: 0.4s;
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        & > div {
+          h3 {
+            color: $primaryColor;
+          }
+          p {
+            color: $primaryColor;
+          }
+        }
+      }
+      &.Mui-focusVisible {
+        background-color: transparent;
+        & > div {
+          h3 {
+            color: $primaryColor;
+          }
+          p {
+            color: $primaryColor;
+          }
+        }
+      }
+    }
+  }
+}
