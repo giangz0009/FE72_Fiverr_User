@@ -4,15 +4,102 @@
 .headerNavPageSmallMenu {
   .headerNavPageSmallMenuWrap {
     padding-block: 16px;
-    & > a {
-      margin-left: 16px;
-      margin-bottom: 16px;
-      padding: 10px 24px;
-      display: inline-block;
-      font-size: 16px;
-      font-weight: 500;
-      border-radius: 4px;
-      @include primaryContained();
+    & > h1 {
+      a {
+        padding: 10px 16px !important;
+        display: inline-block;
+        font-weight: 500;
+      }
+    }
+    & > .MuiList-root {
+      & > .MuiListItem-root {
+        & > .MuiButtonBase-root {
+          & > .MuiListItemText-root {
+            transition: 0.4s;
+            color: $c-gray-700;
+            span {
+              font-size: 16px;
+              font-weight: 500;
+            }
+            &:hover {
+              color: $primaryColor;
+            }
+          }
+          &:hover {
+            background-color: transparent;
+          }
+          & > .MuiPaper-root {
+            width: 100%;
+            box-shadow: none;
+            border: none;
+            & > .MuiButtonBase-root {
+              padding-inline: 0;
+              color: $c-gray-700;
+              transition: 0.4s;
+              min-height: unset;
+              & > .MuiAccordionSummary-content {
+                margin-block: 0;
+              }
+              &:hover {
+                color: $primaryColor;
+              }
+              p {
+                font-size: 16px;
+                font-weight: 500;
+              }
+              & > .MuiAccordionSummary-expandIconWrapper {
+                color: inherit;
+              }
+            }
+            & > .MuiCollapse-root {
+              .MuiAccordionDetails-root {
+                padding-block: 0;
+                p {
+                  font-size: 16px;
+                  font-weight: 400;
+                  color: $c-gray-700;
+                  padding-block: 6px;
+                  transition: 0.4s;
+                  &:hover {
+                    color: $primaryColor;
+                    font-weight: 500;
+                  }
+                }
+                .MuiPaper-root {
+                  width: 100%;
+                  box-shadow: none;
+                  border: none;
+                  margin-block: 0;
+                  .MuiButtonBase-root {
+                    padding-inline: 0;
+                    color: $c-gray-700;
+                    transition: 0.4s;
+                    min-height: 50px;
+                    & > .MuiAccordionSummary-content {
+                      margin-block: 0;
+                    }
+                    &:hover {
+                      color: $primaryColor;
+                    }
+                    .MuiTypography-root {
+                      color: inherit;
+                      font-weight: 500;
+                    }
+                    .MuiAccordionSummary-expandIconWrapper {
+                      color: inherit;
+                      font-weight: 500;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
+}
+
+.MuiTouchRipple-root {
+  display: none;
 }

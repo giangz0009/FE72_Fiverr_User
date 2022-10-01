@@ -11,6 +11,7 @@
           cursor: pointer;
           transition: 0.4s;
           font-weight: 600;
+          padding-inline: 16px;
           &:hover {
             color: $primaryColor;
           }

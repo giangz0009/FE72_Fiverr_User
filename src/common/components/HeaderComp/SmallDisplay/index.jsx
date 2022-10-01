@@ -1,4 +1,7 @@
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Avatar,
   Box,
   Divider,
@@ -7,7 +10,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
@@ -16,16 +18,15 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LodashIsEmpty from "lodash.isempty";
 
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import Logo from "common/components/Logo";
-import { Link } from "react-router-dom";
 
 import "./globalStyle.scss";
 
-function SmallDisplay({ settings }) {
+function SmallDisplay({ settings, pages, browseCategories }) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -34,6 +35,15 @@ function SmallDisplay({ settings }) {
   });
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [pageExpended, setPageExpended] = useState(false);
+  const [categoriesExpended, setCategoriesExpended] = useState(false);
+
+  const handleChangePageExpended = (panel) => (event, isExpanded) => {
+    setPageExpended(isExpanded ? panel : false);
+  };
+  const handleChangeCategoriesExpended = (panel) => (event, isExpanded) => {
+    setCategoriesExpended(isExpanded ? panel : false);
+  };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -54,40 +64,106 @@ function SmallDisplay({ settings }) {
     setState({ ...state, [anchor]: open });
   };
 
+  const renderAccordion = (page, anchor) => (
+    <Accordion
+      expanded={pageExpended === page.title}
+      onChange={handleChangePageExpended(page.title)}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Typography>{page.title}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        {page.items.map((item, index) => (
+          <Typography key={index} onClick={toggleDrawer(anchor, false)}>
+            {item.title}
+          </Typography>
+        ))}
+      </AccordionDetails>
+    </Accordion>
+  );
+
+  const renderBrowseCatergories = (anchor) => {
+    if (!browseCategories) return;
+
+    return (
+      <ListItem disablePadding>
+        <ListItemButton>
+          <Accordion
+            expanded={pageExpended === "categories"}
+            onChange={handleChangePageExpended("categories")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Browse Categories</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {browseCategories.map(
+                (category, index) =>
+                  !LodashIsEmpty(category.list) && (
+                    <Accordion
+                      key={index}
+                      expanded={categoriesExpended === category.title}
+                      onChange={handleChangeCategoriesExpended(category.title)}
+                    >
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Typography>{category.title}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        {category.list.map((item, index) => (
+                          <Typography
+                            key={index}
+                            onClick={toggleDrawer(anchor, false)}
+                          >
+                            {item.tenChiTiet}
+                          </Typography>
+                        ))}
+                      </AccordionDetails>
+                    </Accordion>
+                  )
+              )}
+            </AccordionDetails>
+          </Accordion>
+        </ListItemButton>
+      </ListItem>
+    );
+  };
+
   const list = (anchor) => (
     <Box
       className="headerNavPageSmallMenuWrap"
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Link to="/signIn">Join Fiverr</Link>
+      <Logo color="#62646a" />
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {pages.map((page) => (
+          <ListItem key={page.id} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              {!page.items ? (
+                <ListItemText
+                  primary={page.title}
+                  onClick={toggleDrawer(anchor, false)}
+                />
+              ) : (
+                renderAccordion(page, anchor)
+              )}
             </ListItemButton>
           </ListItem>
         ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {renderBrowseCatergories(anchor)}
       </List>
     </Box>
   );
