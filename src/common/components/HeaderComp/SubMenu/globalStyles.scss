@@ -9,16 +9,25 @@
     font-weight: 500;
     transition: 0.4s;
     padding-inline: 16px;
+    svg {
+      transition: transform 0.4s;
+    }
     &:hover {
       cursor: pointer;
       color: $primaryColor;
+    }
+    &[aria-labelledby=":r3:"] {
+      svg {
+        transform: rotate(180deg);
+      }
     }
   }
 }
 .MuiTooltip-popper {
   .MuiTooltip-tooltip {
     background-color: $whiteColor;
-    max-width: 500px;
+    min-width: 500px;
+    min-height: 200px;
     max-height: 300px;
     overflow: auto;
     margin-top: 0 !important;

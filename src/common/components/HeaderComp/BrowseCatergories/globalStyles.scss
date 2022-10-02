@@ -1,0 +1,66 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.headerBrowseCategories {
+  .headerBrowseCategoryWrap {
+    padding: 10px 10px;
+  }
+  .slick-slider {
+    display: none;
+    .slick-arrow {
+      height: 100%;
+      &::before {
+        display: none;
+      }
+      svg {
+        font-size: 30px;
+        color: $c-gray-700;
+      }
+      &.slick-next {
+        padding-right: 30px;
+        padding-left: 50px;
+        background: linear-gradient(270deg, #fff 50%, hsla(0, 0%, 100%, 0));
+      }
+      &.slick-prev {
+        padding-right: 80px;
+        background: linear-gradient(90deg, #fff 50%, hsla(0, 0%, 100%, 0));
+      }
+    }
+    @include res_md {
+      display: block;
+    }
+  }
+}
+
+.MuiTooltip-popper {
+  .MuiTooltip-tooltip {
+    .headerBrowseCategoryItem {
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      .headerBrowseCategoryItemMain {
+        width: 50%;
+        padding-inline: 10px;
+        & > div {
+          h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: $c-gray-700;
+            margin-bottom: 8px;
+          }
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            color: $c-gray-700;
+            transition: 0.4s;
+            padding: 6px 0;
+            &:hover {
+              cursor: pointer;
+              color: $primaryColor;
+            }
+          }
+        }
+      }
+    }
+  }
+}

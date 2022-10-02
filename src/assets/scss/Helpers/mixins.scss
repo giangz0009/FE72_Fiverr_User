@@ -18,3 +18,24 @@
     background-color: $primaryColorHover;
   }
 }
+
+@mixin res_sm {
+  @media (min-width: $res-sm) {
+    @content;
+  }
+}
+@mixin res_md {
+  @media (min-width: $res-md) {
+    @content;
+  }
+}
+@mixin res_lg {
+  @media (min-width: $res-lg) {
+    @content;
+  }
+}
+@mixin res_xl {
+  @media (min-width: $res-xl) {
+    @content;
+  }
+}

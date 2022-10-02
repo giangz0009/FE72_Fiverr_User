@@ -7,8 +7,7 @@ import "./globalStyles.scss";
 import SmallDisplay from "./SmallDisplay";
 import LargeDisplay from "./LargeDisplay";
 import { useSelector } from "react-redux";
-import { Box } from "@mui/material";
-import Slider from "react-slick";
+import BrowseCatergories from "./BrowseCatergories";
 
 const pages = [
   {
@@ -90,6 +89,12 @@ const HeaderComp = () => {
     }, []);
   }, [browseCategories]);
 
+  const renderBrowseCatergories = () => {
+    if (!browseCategories) return;
+
+    return <BrowseCatergories browseCategories={browseCategories} />;
+  };
+
   return (
     <AppBar position="fixed" className="header">
       <Container maxWidth="xl" className="headerMain">
@@ -103,38 +108,7 @@ const HeaderComp = () => {
           />
         )}
       </Container>
-      <Box className="headerBrowseCategories">
-        <Container maxWidth="xl">
-          <Slider
-            className="slider variable-width"
-            dots={true}
-            infinite={true}
-            centerMode={true}
-            slidesToShow={1}
-            slidesToScroll={1}
-            variableWidth={true}
-          >
-            <div style={{ width: 100 }}>
-              <p>100</p>
-            </div>
-            <div style={{ width: 200 }}>
-              <p>200</p>
-            </div>
-            <div style={{ width: 75 }}>
-              <p>75</p>
-            </div>
-            <div style={{ width: 300 }}>
-              <p>300</p>
-            </div>
-            <div style={{ width: 225 }}>
-              <p>225</p>
-            </div>
-            <div style={{ width: 175 }}>
-              <p>175</p>
-            </div>
-          </Slider>
-        </Container>
-      </Box>
+      {renderBrowseCatergories()}
     </AppBar>
   );
 };
