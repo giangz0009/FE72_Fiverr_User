@@ -31,7 +31,7 @@ const PrevButton = (props) => {
 function BrowseCategories({ browseCategories }) {
   return (
     <Box className="headerBrowseCategories">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Slider
           className="slider variable-width"
           dots={false}
@@ -72,7 +72,7 @@ function BrowseCategories({ browseCategories }) {
                     </Box>
                   }
                 >
-                  <Box>{category.tenLoaiCongViec}</Box>
+                  <Typography>{category.tenLoaiCongViec}</Typography>
                 </Tooltip>
               </Box>
             );

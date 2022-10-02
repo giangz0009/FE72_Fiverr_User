@@ -1,33 +1,60 @@
 @import "assets/scss/Helpers/variables.scss";
 @import "assets/scss/Helpers/mixins.scss";
 
-.headerBrowseCategories {
-  .headerBrowseCategoryWrap {
-    padding: 10px 10px;
-  }
-  .slick-slider {
-    display: none;
-    .slick-arrow {
-      height: 100%;
-      &::before {
-        display: none;
+body {
+  .headerBrowseCategories {
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 100;
+    border: 1px solid $c-border;
+    border-right: none;
+    border-left: none;
+    top: $mainHeaderHeight;
+    left: 0;
+    right: 0;
+    background-color: $whiteColor;
+    .MuiContainer-root {
+      padding-inline: 32px;
+      .headerBrowseCategoryWrap {
+        padding: 10px 10px;
+        transition: 0.4s;
+        cursor: pointer;
+        &:hover {
+          color: $primaryColor !important;
+        }
       }
-      svg {
-        font-size: 30px;
-        color: $c-gray-700;
-      }
-      &.slick-next {
-        padding-right: 30px;
-        padding-left: 50px;
-        background: linear-gradient(270deg, #fff 50%, hsla(0, 0%, 100%, 0));
-      }
-      &.slick-prev {
-        padding-right: 80px;
-        background: linear-gradient(90deg, #fff 50%, hsla(0, 0%, 100%, 0));
+      .slick-slider {
+        .slick-arrow {
+          height: 100%;
+          z-index: 10;
+          &::before {
+            display: none;
+          }
+          svg {
+            font-size: 30px;
+            color: $c-gray-700;
+          }
+          &.slick-next {
+            padding-inline: 50px;
+            background: linear-gradient(270deg, #fff 50%, hsla(0, 0%, 100%, 0));
+          }
+          &.slick-prev {
+            padding-right: 80px;
+            background: linear-gradient(90deg, #fff 50%, hsla(0, 0%, 100%, 0));
+          }
+        }
       }
     }
-    @include res_md {
-      display: block;
+  }
+  &[data-scrolled] {
+    .headerBrowseCategories {
+      opacity: 1;
+      visibility: visible;
+      .headerBrowseCategoryWrap {
+        color: $c-gray-500;
+      }
     }
   }
 }

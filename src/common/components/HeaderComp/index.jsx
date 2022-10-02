@@ -96,20 +96,22 @@ const HeaderComp = () => {
   };
 
   return (
-    <AppBar position="fixed" className="header">
-      <Container maxWidth="xl" className="headerMain">
-        {width > 900 ? (
-          <LargeDisplay pages={pages} settings={settings} />
-        ) : (
-          <SmallDisplay
-            pages={pages}
-            settings={settings}
-            browseCategories={remapBrowseCategories}
-          />
-        )}
-      </Container>
-      {renderBrowseCatergories()}
-    </AppBar>
+    <>
+      <AppBar position="fixed" className="header">
+        <Container maxWidth="xl" className="headerMain">
+          {width > 900 ? (
+            <LargeDisplay pages={pages} settings={settings} />
+          ) : (
+            <SmallDisplay
+              pages={pages}
+              settings={settings}
+              browseCategories={remapBrowseCategories}
+            />
+          )}
+        </Container>
+      </AppBar>
+      {width > 900 && renderBrowseCatergories()}
+    </>
   );
 };
 export default HeaderComp;

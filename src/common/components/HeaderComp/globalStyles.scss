@@ -1,35 +1,79 @@
 @import "assets/scss/Helpers/variables.scss";
 @import "assets/scss/Helpers/mixins.scss";
 
-.header {
-  .headerMain {
-    min-height: $mainHeaderHeight;
-    & > .MuiToolbar-root {
+body {
+  .header {
+    transition: 0.4s;
+    background-color: transparent !important;
+    .headerMain {
       min-height: $mainHeaderHeight;
-      .headerMainNavPages {
-        p {
-          cursor: pointer;
-          transition: 0.4s;
-          font-weight: 600;
-          padding-inline: 16px;
-          &:hover {
-            color: $primaryColor;
+      & > .MuiToolbar-root {
+        min-height: $mainHeaderHeight;
+        .headerMainNavPages {
+          p {
+            cursor: pointer;
+            transition: 0.4s;
+            font-weight: 600;
+            padding-inline: 16px;
+            &:hover {
+              color: $primaryColor !important;
+            }
+          }
+        }
+        .headerMainSettings {
+          button {
+            display: inline-block;
+            font-size: 16px;
+            text-transform: capitalize;
+            transition: 0.4s;
+            margin-inline: 8px;
+            &:nth-child(2) {
+              padding: 2px 6px !important;
+              @include primaryOutlined();
+            }
+            &:hover {
+              color: $primaryColor !important;
+            }
           }
         }
       }
-      .headerMainSettings {
-        button {
-          display: inline-block;
-          font-size: 16px;
-          text-transform: capitalize;
-          transition: 0.4s;
-          margin-inline: 8px;
-          &:nth-child(2) {
-            padding: 2px 6px !important;
-            @include primaryOutlined();
+    }
+  }
+  &[data-scrolled="true"] {
+    .header {
+      background-color: $whiteColor !important;
+      @include res_md {
+        box-shadow: none !important;
+      }
+      & > .MuiContainer-root {
+        & > .MuiToolbar-root {
+          h1 {
+            svg {
+              g {
+                &:first-child {
+                  fill: $c-gray-500 !important;
+                }
+              }
+            }
           }
-          &:hover {
-            color: $primaryColor;
+          .headerMainNavPages {
+            p {
+              color: $c-gray-500;
+            }
+          }
+          .headerMainSettings {
+            button {
+              &:first-child {
+                color: $c-gray-500;
+              }
+            }
+          }
+          & > .MuiBox-root {
+            & > .MuiButtonBase-root {
+              svg {
+                color: $c-gray-500;
+              }
+            }
           }
         }
       }

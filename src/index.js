@@ -1,3 +1,4 @@
+import Home from "features/booking/pages/Home";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -14,12 +15,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route
-              index
-              element={
-                <p className="text-3xl font-bold underline">Home page</p>
-              }
-            />
+            <Route index element={<Home />} />
             <Route path="jobsList" element={<p>Danh sách công việc</p>} />
           </Route>
         </Routes>

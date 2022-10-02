@@ -6,7 +6,7 @@
   transition: 0.4s;
   &:hover {
     background-color: $primaryColor;
-    color: #fff;
+    color: #fff !important;
   }
 }
 
@@ -16,6 +16,16 @@
   transition: 0.4s;
   &:hover {
     background-color: $primaryColorHover;
+  }
+}
+
+@mixin secondaryOutlined {
+  border: 2px solid $whiteColor;
+  color: $whiteColor;
+  transition: 0.4s;
+  &:hover {
+    background-color: $whiteColor;
+    color: $c-gray-500;
   }
 }
 

@@ -1,3 +1,4 @@
+import BtnScrollToTop from "common/components/BtnScrollToTop";
 import FooterComp from "common/components/FooterComp";
 import HeaderComp from "common/components/HeaderComp";
 import { fetchSetMenuJobsTypeAction } from "features/booking/action";
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <HeaderComp />
       <Outlet />
+      <BtnScrollToTop />
       <FooterComp />
     </div>
   );
