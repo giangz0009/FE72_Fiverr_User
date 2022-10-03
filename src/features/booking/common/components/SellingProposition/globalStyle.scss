@@ -1,0 +1,72 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.sellingPropositionWrapper {
+  background-color: $c-green-200;
+  --gap: 30px;
+  .sellingProposition {
+    display: flex;
+    padding-block: 80px;
+    margin-inline: calc(0px - var(--gap));
+    & > div {
+      padding-inline: var(--gap);
+    }
+    .content {
+      width: 40%;
+      h3 {
+        font-size: 32px;
+        font-weight: 700;
+        color: $c-gray-500;
+        margin-bottom: 12px;
+      }
+      ul {
+        li {
+          padding-block: 8px;
+          h6 {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: $c-gray-500;
+            svg {
+              color: $c-gray-400;
+              margin-right: 12px;
+            }
+          }
+          p {
+            font-size: 16px;
+            font-weight: 500;
+            color: $c-gray-700;
+            margin-top: 4px;
+          }
+        }
+      }
+    }
+    .videoModal {
+      width: 60%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      img {
+        cursor: pointer;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.6);
+        svg {
+          color: $whiteColor;
+          font-size: 50px;
+        }
+      }
+    }
+  }
+}

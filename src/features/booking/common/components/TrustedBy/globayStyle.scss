@@ -1,0 +1,27 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.trustedBy {
+  .trustedByWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: $c-gray-400;
+      margin-right: 16px;
+    }
+    .trustedByList {
+      display: flex;
+      align-items: center;
+      height: 95px;
+      img {
+        height: 60px;
+        object-fit: cover;
+        object-position: center;
+        margin-right: 24px;
+      }
+    }
+  }
+}

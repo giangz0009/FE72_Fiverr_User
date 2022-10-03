@@ -1,13 +1,13 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Container from "@mui/material/Container";
-import useWindowSize from "common/hocs/useWindowSize";
 
 import "./globalStyles.scss";
 import SmallDisplay from "./SmallDisplay";
 import LargeDisplay from "./LargeDisplay";
 import { useSelector } from "react-redux";
 import BrowseCatergories from "./BrowseCatergories";
+import { Container } from "@mui/material";
+import useWindowSize from "common/hooks/useWindowSize";
 
 const pages = [
   {
