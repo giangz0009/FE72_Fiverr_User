@@ -1,0 +1,58 @@
+@import "assets/scss/Helpers/variables.scss";
+
+.mainCategoriesWrapper {
+  .mainCategories {
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+      color: $c-gray-500;
+      margin-bottom: 12px;
+    }
+    .categoriesList {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 20%;
+        padding: 20px;
+        a {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 18px;
+          font-weight: 500;
+          color: $c-gray-500;
+          & > div {
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            position: relative;
+            img {
+              width: 48px;
+              height: 48px;
+              object-fit: cover;
+              object-position: center;
+            }
+            &::after {
+              content: " ";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              display: block;
+              height: 2px;
+              border-radius: 4px;
+              background-color: $c-gray-400;
+              transition: 0.4s;
+            }
+          }
+        }
+        &:hover {
+          & > a > div::after {
+            background-color: $primaryColor;
+            transform: scaleX(2);
+          }
+        }
+      }
+    }
+  }
+}
