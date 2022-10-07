@@ -11,7 +11,7 @@ var settings = {
       breakpoint: 1024,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         infinite: true,
         dots: true,
       },
@@ -20,7 +20,7 @@ var settings = {
       breakpoint: 600,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         initialSlide: 2,
       },
     },
@@ -68,13 +68,13 @@ function Services() {
       <Container maxWidth="lg">
         <h2>Popular professional services</h2>
         <Slider
-        {...settings}
+          {...settings}
           className="slider variable-width"
           dots={false}
           infinite={true}
           initialSlide={0}
           slidesToShow={5}
-          slidesToScroll={5}
+          slidesToScroll={1}
           centerMode={true}
           variableWidth={true}
           speed={500}
