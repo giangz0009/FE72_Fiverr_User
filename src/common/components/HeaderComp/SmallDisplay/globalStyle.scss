@@ -100,6 +100,37 @@
   }
 }
 
+.headerNavSmallSearch {
+  display: none !important;
+  @include res_sm {
+    display: flex !important;
+  }
+  .MuiAutocomplete-root {
+    .headerNavSmallSearchInputWrapper {
+      & > div {
+        input {
+          max-width: 300px;
+          width: 100%;
+          padding-left: 35px;
+          font-size: 14px;
+          border: 1px solid $c-border;
+          padding-block: 4px;
+          border-radius: 4px;
+        }
+        & > div {
+          background-color: #222325;
+          padding-inline: 4px;
+          border-radius: 4px;
+          svg {
+            color: $whiteColor;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+
 .MuiTouchRipple-root {
   display: none;
 }

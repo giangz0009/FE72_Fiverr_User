@@ -29,6 +29,15 @@
   }
 }
 
+@mixin limitLine($limitLine: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $limitLine; /* number of lines to show */
+  line-clamp: $limitLine;
+  -webkit-box-orient: vertical;
+}
+
 @mixin res_sm {
   @media (min-width: $res-sm) {
     @content;

@@ -11,16 +11,27 @@
       font-weight: 500;
       color: $c-gray-400;
       margin-right: 16px;
+      display: none;
+      @include res_md {
+        display: block;
+      }
     }
     .trustedByList {
       display: flex;
       align-items: center;
-      height: 95px;
+      height: 80px;
+      @include res_sm {
+        height: 95px;
+      }
       img {
-        height: 60px;
+        height: 40px;
         object-fit: cover;
         object-position: center;
-        margin-right: 24px;
+        margin-right: 16px;
+        @include res_sm {
+          height: 60px;
+          margin-right: 24px;
+        }
       }
     }
   }

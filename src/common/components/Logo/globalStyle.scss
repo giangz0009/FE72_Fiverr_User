@@ -1,0 +1,17 @@
+@import "assets/scss/Helpers/mixins.scss";
+
+.mainLogo {
+  a {
+    padding: 6px 0;
+    @include res_md {
+      padding: 12px 8px;
+    }
+    svg {
+      font-size: 30px;
+      transform: scale(0.7);
+      @include res_md {
+        transform: scale(1);
+      }
+    }
+  }
+}

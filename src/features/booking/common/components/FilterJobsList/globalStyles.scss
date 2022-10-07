@@ -1,0 +1,130 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.filterJobsList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left {
+    display: flex;
+    align-items: center;
+    .MuiFormControl-root {
+      .MuiInputBase-root {
+        .MuiSelect-select {
+          padding-block: 8px;
+          font-weight: 600;
+          color: $c-gray-500;
+        }
+      }
+      fieldset {
+        border-color: $c-border !important;
+      }
+    }
+    & > .MuiButtonBase-root {
+      margin-inline: 8px;
+      height: 100%;
+      border: 1px solid $c-border;
+      color: $c-gray-500;
+      font-weight: 600;
+      min-width: 120px;
+      svg {
+        transition: 0.4s;
+      }
+      &.open {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+  .right {
+    .MuiFormGroup-root {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      label {
+        .MuiButtonBase-root.Mui-checked {
+          color: $primaryColor;
+          & + .MuiSwitch-track {
+            background-color: $primaryColorHover;
+          }
+        }
+      }
+    }
+  }
+}
+
+.filterItem {
+  min-width: 300px;
+  font-weight: 500 !important;
+  display: flex;
+  &.filterItemCategory {
+    justify-content: space-between !important;
+  }
+  span {
+    &:nth-child(2) {
+      color: $c-gray-400;
+    }
+  }
+  &.Mui-selected {
+    color: $primaryColor;
+    background-color: transparent !important;
+  }
+}
+
+.filterJobsDialog {
+  .MuiPaper-root {
+    min-width: 400px;
+    .MuiDialogContent-root {
+      & > div {
+        padding-block: 8px;
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+          color: $c-gray-500;
+        }
+        .MuiFormGroup-root {
+          flex-direction: row;
+          & > label {
+            width: 50%;
+            margin: 0;
+            & > .MuiButtonBase-root.Mui-checked {
+              color: $primaryColor;
+            }
+            & > .MuiTypography-root {
+              font-size: 16px;
+              font-weight: 500;
+              color: $c-gray-700;
+            }
+          }
+        }
+      }
+      .budgetDialog {
+        display: flex;
+        margin-inline: -16px;
+        .budgetItem {
+          padding-inline: 16px;
+          .MuiFormControl-root {
+            .MuiFormLabel-root {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .MuiDialogActions-root {
+      justify-content: space-between;
+      padding-inline: 16px;
+      .clearAllBtn {
+        color: $c-gray-700;
+        font-weight: 700;
+      }
+      .applyBtn {
+        color: $primaryColor;
+        font-weight: 700;
+      }
+    }
+  }
+}

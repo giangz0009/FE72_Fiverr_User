@@ -1,0 +1,47 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.herosBannerWrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .HerosBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-block: 40px;
+    color: $whiteColor;
+    h3 {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      margin-block: 16px;
+    }
+    button {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 24px;
+      border-radius: 4px;
+      border: 1px solid $whiteColor;
+      transition: 0.4s;
+      margin-top: 12px;
+      svg {
+        margin-right: 8px;
+      }
+      &:hover {
+        color: $c-gray-500;
+        background-color: $whiteColor;
+      }
+    }
+  }
+}

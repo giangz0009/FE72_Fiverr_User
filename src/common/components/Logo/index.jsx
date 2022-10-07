@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "./globalStyle.scss";
+
 function Logo({ color = "#fff" }) {
   return (
-    <h1>
-      <Link to="/" style={{ display: "block", padding: "12px 8px" }}>
+    <h1 className="mainLogo">
+      <Link to="/" style={{ display: "block" }}>
         <svg
           style={{ color: "#fff" }}
           width="89"

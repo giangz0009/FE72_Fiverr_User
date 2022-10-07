@@ -2,8 +2,13 @@ import { Box, Fab, Fade, useScrollTrigger } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useLocation } from "react-router-dom";
 
 function BtnScrollToTop(props) {
+  const location = useLocation();
+
+  const isAtHomePage = location.pathname === "/";
+
   function ScrollTop(props) {
     const { children, window } = props;
     // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -15,10 +20,14 @@ function BtnScrollToTop(props) {
       threshold: 100,
     });
 
-    if (trigger) {
-      addDataScrolled();
+    if (isAtHomePage) {
+      if (trigger) {
+        addDataScrolled();
+      } else {
+        removeDataScrolled();
+      }
     } else {
-      removeDataScrolled();
+      addDataScrolled();
     }
 
     const handleClick = (event) => {

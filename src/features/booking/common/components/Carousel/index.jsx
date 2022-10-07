@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -11,8 +11,49 @@ import { Autocomplete } from "@mui/material";
 
 import "./globalStyle.scss";
 import { Container } from "@mui/system";
+import instance from "app/instance";
+import Highlighter from "react-highlight-words";
+import { useNavigate } from "react-router-dom";
 
 function Carousel() {
+  const [searchList, setSearchList] = useState([]);
+
+  const navigate = useNavigate();
+
+  let timeOut = null;
+
+  const handleOnInputKeyUp = (e) => {
+    const searchValue = e.target.value.trim();
+
+    if (searchValue !== "") {
+      clearTimeout(timeOut);
+
+      timeOut = setTimeout(async () => {
+        try {
+          const res = await instance.request({
+            url:
+              "/api/cong-viec/lay-danh-sach-cong-viec-theo-ten/" + searchValue,
+            method: "GET",
+          });
+
+          setSearchList(res.data.content);
+        } catch (error) {
+          console.log(error);
+        }
+      }, 600);
+    } else {
+      setSearchList([]);
+    }
+  };
+
+  const handleOnInputKeyDown = (e) => {
+    const key = e.key;
+
+    if (key === "Enter") {
+      navigate(`search/name/${e.target.value}`);
+    }
+  };
+
   const settings = {
     dots: false,
     infinite: true,
@@ -99,13 +140,40 @@ function Carousel() {
                   },
                 }}
                 id="custom-input-demo"
-                options={[]}
+                options={searchList}
+                selectOnFocus
+                clearOnBlur
+                noOptionsText="No options"
+                getOptionLabel={(option) => option.congViec.tenCongViec}
+                isOptionEqualToValue={(option, value) => {
+                  return option.id === value.congViec.id;
+                }}
+                renderOption={(props, option, { inputValue }) => {
+                  props.key = option.congViec.id;
+                  return (
+                    <li
+                      {...props}
+                      onClick={() =>
+                        navigate(`search/name/${option.congViec.tenCongViec}`)
+                      }
+                    >
+                      <Highlighter
+                        highlightClassName="YourHighlightClass"
+                        searchWords={[inputValue]}
+                        autoEscape={true}
+                        textToHighlight={option.congViec.tenCongViec}
+                      />
+                    </li>
+                  );
+                }}
                 renderInput={(params) => (
                   <div ref={params.InputProps.ref}>
                     <input
                       placeholder='Try "building mobile app"'
                       type="text"
                       {...params.inputProps}
+                      onKeyUp={handleOnInputKeyUp}
+                      onKeyDown={handleOnInputKeyDown}
                     />
                   </div>
                 )}

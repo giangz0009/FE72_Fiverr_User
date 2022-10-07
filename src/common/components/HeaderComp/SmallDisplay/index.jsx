@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Autocomplete,
   Avatar,
   Box,
   Divider,
@@ -13,17 +14,42 @@ import {
   ListItemText,
   Menu,
   MenuItem,
+  styled,
   Toolbar,
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LodashIsEmpty from "lodash.isempty";
+import SearchIcon from "@mui/icons-material/Search";
 
 import React, { memo, useState } from "react";
 import Logo from "common/components/Logo";
 
 import "./globalStyle.scss";
+import { useNavigate } from "react-router-dom";
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
 
 function SmallDisplay({ settings, pages, browseCategories }) {
   const [state, setState] = React.useState({
@@ -32,6 +58,8 @@ function SmallDisplay({ settings, pages, browseCategories }) {
     bottom: false,
     right: false,
   });
+
+  const navigate = useNavigate();
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [pageExpended, setPageExpended] = useState(false);
@@ -52,7 +80,7 @@ function SmallDisplay({ settings, pages, browseCategories }) {
     setAnchorElUser(null);
   };
 
-  const toggleDrawer = (anchor, open) => (event) => {
+  const toggleDrawer = (anchor, open, link) => (event) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -61,6 +89,7 @@ function SmallDisplay({ settings, pages, browseCategories }) {
     }
 
     setState({ ...state, [anchor]: open });
+    if (link) navigate(link);
   };
 
   const renderAccordion = (page, anchor) => (
@@ -122,7 +151,11 @@ function SmallDisplay({ settings, pages, browseCategories }) {
                         {category.list.map((item, index) => (
                           <Typography
                             key={index}
-                            onClick={toggleDrawer(anchor, false)}
+                            onClick={toggleDrawer(
+                              anchor,
+                              false,
+                              `/search/categories/${item.id}`
+                            )}
                           >
                             {item.tenChiTiet}
                           </Typography>
@@ -187,12 +220,64 @@ function SmallDisplay({ settings, pages, browseCategories }) {
           {list("left")}
         </Drawer>
       </Box>
-      <Box sx={{ flexGrow: 1 }} display="flex" justifyContent="center">
+      <Box
+        sx={{
+          flexGrow: { xs: 1, sm: "unset" },
+          justifyContent: { xs: "center", sm: "flex-start" },
+        }}
+        display="flex"
+      >
         <Logo />
+      </Box>
+      <Box
+        className="headerNavSmallSearch"
+        sx={{
+          flexGrow: 1,
+          justifyContent: "flex-start",
+        }}
+        display="flex"
+      >
+        <Autocomplete
+          sx={{
+            display: "inline-block",
+            "& input": {
+              width: 200,
+              bgcolor: "background.paper",
+              color: (theme) =>
+                theme.palette.getContrastText(theme.palette.background.paper),
+            },
+          }}
+          id="custom-input-demo"
+          options={[]}
+          renderInput={(params) => (
+            <div
+              className="headerNavSmallSearchInputWrapper"
+              ref={params.InputProps.ref}
+            >
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <input
+                  placeholder="Search…"
+                  type="text"
+                  {...params.inputProps}
+                />
+              </Search>
+            </div>
+          )}
+        />
       </Box>
       <Box sx={{ flexGrow: 0 }}>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar
+            alt="Remy Sharp"
+            src="/static/images/avatar/2.jpg"
+            sx={{
+              width: { xs: 30, sm: 40 },
+              height: { xs: 30, sm: 40 },
+            }}
+          />
         </IconButton>
         <Menu
           sx={{ mt: "45px" }}

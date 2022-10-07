@@ -1,18 +1,31 @@
 @import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
 
 .testimonials {
-  padding-block: 80px;
+  padding-block: 40px;
+  @include res_md {
+    padding-block: 80px;
+  }
   .testimonial {
     --gap: 30px;
     display: flex !important;
     align-items: center;
-    margin-inline: calc(0px - var(--gap));
+    flex-wrap: wrap;
+    @include res_md {
+      flex-wrap: nowrap;
+      margin-inline: calc(0px - var(--gap));
+    }
     & > div {
-      padding-inline: var(--gap);
+      @include res_md {
+        padding-inline: var(--gap);
+      }
     }
     .videoModal {
-      width: 40%;
+      width: 100%;
       position: relative;
+      @include res_md {
+        width: 40%;
+      }
       img {
         width: 100%;
         object-fit: cover;
@@ -36,15 +49,28 @@
       }
     }
     .content {
-      width: 60%;
+      width: 100%;
+      @include res_md {
+        width: 60%;
+      }
       h6 {
-        font-size: 20px;
-        font-weight: 500;
+        font-size: 18px;
+        font-weight: 400;
         color: $c-gray-400;
+        margin-top: 8px;
+        @include res_md {
+          font-size: 20px;
+          margin-top: 0;
+          font-weight: 500;
+        }
         span {
           padding-left: 8px;
           margin-left: 8px;
           border-left: 1px solid #c5c6c9;
+          display: none;
+          @include res_md {
+            display: inline-block;
+          }
           img {
             display: inline-block;
             height: 33px;
@@ -55,9 +81,12 @@
       }
       p {
         margin-top: 8px;
-        font-size: 26px;
+        font-size: 22px;
         font-weight: 600;
         color: $c-gray-500;
+        @include res_md {
+          font-size: 26px;
+        }
       }
     }
   }
@@ -73,6 +102,13 @@
       justify-content: center;
       background-color: $whiteColor;
       transition: 0.4s;
+      top: 25%;
+      @include res_sm {
+        top: 30%;
+      }
+      @include res_md {
+        top: 50%;
+      }
       &::before {
         display: none;
       }

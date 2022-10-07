@@ -7,6 +7,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 import "./globalStyles.scss";
+import { useNavigate } from "react-router-dom";
 
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -29,6 +30,8 @@ const PrevButton = (props) => {
 };
 
 function BrowseCategories({ browseCategories }) {
+  const navigate = useNavigate();
+
   return (
     <Box className="headerBrowseCategories">
       <Container maxWidth="lg">
@@ -62,7 +65,12 @@ function BrowseCategories({ browseCategories }) {
                           <div>
                             <h3>{detailItem.tenNhom}</h3>
                             {detailItem.dsChiTietLoai.map((item) => (
-                              <Typography key={item.id}>
+                              <Typography
+                                key={item.id}
+                                onClick={() =>
+                                  navigate(`/search/categories/${item.id}`)
+                                }
+                              >
                                 {item.tenChiTiet}
                               </Typography>
                             ))}
@@ -72,7 +80,13 @@ function BrowseCategories({ browseCategories }) {
                     </Box>
                   }
                 >
-                  <Typography>{category.tenLoaiCongViec}</Typography>
+                  <Typography
+                    onClick={() =>
+                      navigate(`/search/categories/${category.id}`)
+                    }
+                  >
+                    {category.tenLoaiCongViec}
+                  </Typography>
                 </Tooltip>
               </Box>
             );

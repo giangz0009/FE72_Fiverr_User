@@ -1,4 +1,8 @@
+// import SearchCategories from "features/booking/common/components/SearchCategories";
+import SearchJobType from "features/booking/common/components/SearchJobType";
+import SearchName from "features/booking/common/components/SearchName";
 import Home from "features/booking/pages/Home";
+import Search from "features/booking/pages/Search";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -16,6 +20,12 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
+            <Route path="search/" element={<Search />}>
+              <Route index element={<p>Search Main</p>} />
+              {/* <Route path="categories/:jobId" element={<SearchCategories />} /> */}
+              <Route path="categories/:jobTypeId" element={<SearchJobType />} />
+              <Route path="name/:jobName" element={<SearchName />} />
+            </Route>
             <Route path="jobsList" element={<p>Danh sách công việc</p>} />
           </Route>
         </Routes>

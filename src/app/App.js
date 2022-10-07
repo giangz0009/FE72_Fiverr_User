@@ -4,14 +4,20 @@ import HeaderComp from "common/components/HeaderComp";
 import { fetchSetMenuJobsTypeAction } from "features/booking/action";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
 
+  const location = useLocation();
+
   useEffect(() => {
     dispatch(fetchSetMenuJobsTypeAction);
   }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <div className="App">
