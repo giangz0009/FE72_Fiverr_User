@@ -8,4 +8,17 @@ const instance = axios.create({
   },
 });
 
+instance.interceptors.request.use((config) => {
+  const authProfile = JSON.parse(localStorage.getItem("authProfile"));
+
+  if (authProfile) {
+    config.headers = {
+      ...config.headers,
+      token: authProfile.token,
+    };
+  }
+
+  return config;
+});
+
 export default instance;

@@ -69,10 +69,7 @@ function HerosBanner({ jobTypeId }) {
           How Fiverr works
         </button>
       </div>
-      <VideoModal
-        ref={refVideoModal}
-        src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7"
-      />
+      <VideoModal ref={refVideoModal} src={srcVideo} />
     </div>
   );
 }

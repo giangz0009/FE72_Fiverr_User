@@ -1,0 +1,10 @@
+@import "assets/scss/Helpers/mixins.scss";
+
+.search {
+  margin-top: 60px;
+  padding-block: 30px;
+  @include res_md {
+    margin-top: 130px;
+    padding-block: 40px;
+  }
+}

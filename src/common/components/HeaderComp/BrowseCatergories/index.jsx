@@ -29,11 +29,14 @@ const PrevButton = (props) => {
   );
 };
 
-function BrowseCategories({ browseCategories }) {
+function BrowseCategories({ browseCategories, isInDetailsJobPath }) {
   const navigate = useNavigate();
 
   return (
-    <Box className="headerBrowseCategories">
+    <Box
+      className="headerBrowseCategories"
+      position={isInDetailsJobPath ? "static" : "fixed"}
+    >
       <Container maxWidth="lg">
         <Slider
           className="slider variable-width"
@@ -68,7 +71,9 @@ function BrowseCategories({ browseCategories }) {
                               <Typography
                                 key={item.id}
                                 onClick={() =>
-                                  navigate(`/search/categories/${item.id}`)
+                                  navigate(
+                                    `/search/categories/${category.id}/${item.id}`
+                                  )
                                 }
                               >
                                 {item.tenChiTiet}

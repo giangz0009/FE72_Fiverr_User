@@ -1,0 +1,133 @@
+@import "assets/scss/Helpers/mixins.scss";
+@import "assets/scss/Helpers/variables.scss";
+
+.jobDetailsPaymentMain {
+  height: 100%;
+  .reactSticky {
+    padding-top: 30px;
+    @include res_md {
+      padding-top: 70px;
+    }
+  }
+  .wrapper {
+    border: 1px solid $c-border;
+    border-radius: 8px;
+    margin-inline: -15px;
+    @include res_md {
+      margin-inline: 0;
+    }
+    .MuiTabs-root {
+      .MuiTabs-flexContainer {
+        .MuiButtonBase-root {
+          text-transform: none;
+          flex: 1;
+          font-size: 16px;
+          font-weight: 700;
+          background-color: #fafafa;
+          padding-block: 24px;
+          &:not(:last-child) {
+            border-right: 1px solid $c-border;
+          }
+          &.Mui-selected {
+            color: $primaryColor;
+            background-color: $whiteColor;
+          }
+        }
+      }
+      .MuiTabs-indicator {
+        background-color: $primaryColor;
+      }
+    }
+    .pannel {
+      .header {
+        h3 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 24px;
+          b {
+            font-size: 18px;
+            font-weight: 600;
+            color: $c-gray-500;
+            text-transform: uppercase;
+          }
+          .price {
+            span {
+              font-size: 18px;
+              font-weight: 400;
+              color: $c-gray-700;
+            }
+          }
+        }
+        p {
+          font-size: 16px;
+          font-weight: 600;
+          color: $c-gray-700;
+          margin-bottom: 24px;
+          @include limitLine(3);
+        }
+      }
+      article {
+        .additionInfo {
+          display: flex;
+          align-items: center;
+          & > div {
+            display: flex;
+            align-items: center;
+            color: $c-gray-700;
+            svg {
+              font-size: 20px;
+            }
+            b {
+              margin-left: 8px;
+              font-size: 15px;
+            }
+            &.revision {
+              margin-left: 16px;
+            }
+          }
+        }
+        .features {
+          margin-block: 12px;
+          li {
+            font-size: 16px;
+            font-weight: 600;
+            color: $c-gray-400;
+            svg {
+              color: $c-gray-400;
+              margin-right: 12px;
+            }
+            &.active {
+              color: $c-gray-700;
+              svg {
+                color: $primaryColor;
+              }
+            }
+          }
+        }
+      }
+      & > div > button {
+        margin-top: 12px;
+        border-radius: 8px;
+        width: 100%;
+        padding-block: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        @include primaryContained();
+      }
+    }
+  }
+  .sellerInfo {
+    margin-top: 16px;
+    padding: 24px;
+    background-color: #fafafa;
+    button {
+      border-radius: 8px;
+      width: 100%;
+      padding-block: 8px;
+      font-weight: 600;
+      font-size: 17px;
+      @include grayOutlined();
+    }
+  }
+}

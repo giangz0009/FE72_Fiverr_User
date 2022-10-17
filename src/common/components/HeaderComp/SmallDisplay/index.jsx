@@ -28,6 +28,9 @@ import Logo from "common/components/Logo";
 
 import "./globalStyle.scss";
 import { useNavigate } from "react-router-dom";
+import instance from "app/instance";
+import Highlighter from "react-highlight-words";
+import { useSelector } from "react-redux";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -51,6 +54,35 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = "#";
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.slice(0, 1).toUpperCase()}`,
+  };
+}
+
 function SmallDisplay({ settings, pages, browseCategories }) {
   const [state, setState] = React.useState({
     top: false,
@@ -64,6 +96,42 @@ function SmallDisplay({ settings, pages, browseCategories }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [pageExpended, setPageExpended] = useState(false);
   const [categoriesExpended, setCategoriesExpended] = useState(false);
+  const [searchList, setSearchList] = useState([]);
+  const authProfile = useSelector((state) => state.authReducer.authProfile);
+
+  let timeOut = null;
+
+  const handleOnInputKeyUp = (e) => {
+    const searchValue = e.target.value.trim();
+
+    if (searchValue !== "") {
+      clearTimeout(timeOut);
+
+      timeOut = setTimeout(async () => {
+        try {
+          const res = await instance.request({
+            url:
+              "/api/cong-viec/lay-danh-sach-cong-viec-theo-ten/" + searchValue,
+            method: "GET",
+          });
+
+          setSearchList(res.data.content);
+        } catch (error) {
+          console.log(error);
+        }
+      }, 600);
+    } else {
+      setSearchList([]);
+    }
+  };
+
+  const handleOnInputKeyDown = (e) => {
+    const key = e.key;
+
+    if (key === "Enter") {
+      navigate(`search/name/${e.target.value}`);
+    }
+  };
 
   const handleChangePageExpended = (panel) => (event, isExpanded) => {
     setPageExpended(isExpanded ? panel : false);
@@ -248,7 +316,29 @@ function SmallDisplay({ settings, pages, browseCategories }) {
             },
           }}
           id="custom-input-demo"
-          options={[]}
+          options={searchList}
+          blurOnSelect
+          noOptionsText="No options"
+          getOptionLabel={(option) => option.congViec.tenCongViec}
+          isOptionEqualToValue={(option, value) => {
+            return option.id === value.congViec.id;
+          }}
+          renderOption={(props, option, { inputValue }) => {
+            props.key = option.congViec.id;
+            return (
+              <li {...props}>
+                <Highlighter
+                  onClick={() =>
+                    navigate(`search/name/${option.congViec.tenCongViec}`)
+                  }
+                  highlightClassName="YourHighlightClass"
+                  searchWords={[inputValue]}
+                  autoEscape={true}
+                  textToHighlight={option.congViec.tenCongViec}
+                />
+              </li>
+            );
+          }}
           renderInput={(params) => (
             <div
               className="headerNavSmallSearchInputWrapper"
@@ -261,6 +351,8 @@ function SmallDisplay({ settings, pages, browseCategories }) {
                 <input
                   placeholder="Search…"
                   type="text"
+                  onKeyUp={handleOnInputKeyUp}
+                  onKeyDown={handleOnInputKeyDown}
                   {...params.inputProps}
                 />
               </Search>
@@ -268,16 +360,20 @@ function SmallDisplay({ settings, pages, browseCategories }) {
           )}
         />
       </Box>
-      <Box sx={{ flexGrow: 0 }}>
+      <Box sx={{ flexGrow: 0 }} className="smallDisplaySettings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar
-            alt="Remy Sharp"
-            src="/static/images/avatar/2.jpg"
-            sx={{
-              width: { xs: 30, sm: 40 },
-              height: { xs: 30, sm: 40 },
-            }}
-          />
+          {LodashIsEmpty(authProfile) ? (
+            <Avatar
+              alt={settings[0].label}
+              {...stringAvatar(`${settings[0].label}`)}
+              sx={{
+                width: { xs: 30, sm: 40 },
+                height: { xs: 30, sm: 40 },
+              }}
+            />
+          ) : (
+            <img src={authProfile.avatar} alt="Avatar" />
+          )}
         </IconButton>
         <Menu
           sx={{ mt: "45px" }}
@@ -295,9 +391,11 @@ function SmallDisplay({ settings, pages, browseCategories }) {
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          {settings.map((setting) => (
-            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">{setting}</Typography>
+          {settings.map((setting, index) => (
+            <MenuItem key={index} onClick={handleCloseUserMenu}>
+              <Typography textAlign="center" onClick={setting.handleOnClick}>
+                {setting.label}
+              </Typography>
             </MenuItem>
           ))}
         </Menu>

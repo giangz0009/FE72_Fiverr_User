@@ -67,6 +67,8 @@ export default function BasicRating({
     <Box
       sx={{
         "& > legend": { mt: 2 },
+        alignItems: "center",
+        display: "flex",
       }}
     >
       {switchCaseToRender()}

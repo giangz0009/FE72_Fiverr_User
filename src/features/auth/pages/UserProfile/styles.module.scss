@@ -1,0 +1,11 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.userProfile {
+  margin-top: 60px;
+  padding-block: 40px;
+  background-color: $c-bg;
+  @include res_md {
+    margin-top: 130px;
+  }
+}

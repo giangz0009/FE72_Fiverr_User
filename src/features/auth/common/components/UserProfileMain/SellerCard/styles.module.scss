@@ -1,0 +1,100 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.sellerCard {
+  background-color: $whiteColor;
+  border-radius: 8px;
+  border: 1px solid $c-border;
+  box-shadow: 0 0 8px $c-box-shadow;
+  padding: 30px;
+  .sellerInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid $c-border;
+    padding-bottom: 24px;
+    .avatar {
+      overflow: hidden;
+      position: relative;
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        transition: 0.4s;
+        &:hover {
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
+      & > div {
+        width: 100px;
+        height: 100px;
+        font-size: 32px;
+        font-weight: 700;
+        transition: 0.4s;
+        &:hover {
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
+    }
+    h1 {
+      margin-top: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      color: $c-gray-500;
+    }
+    & > span {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      border: 1px solid $primaryColor;
+      border-radius: 12px;
+      padding: 2px 8px;
+      color: $primaryColor;
+      font-size: 12px;
+      svg {
+        font-size: 8px;
+        margin-right: 8px;
+      }
+    }
+  }
+  .sellerStatsDesc {
+    padding-top: 24px;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 8px;
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        color: $c-gray-600;
+        display: flex;
+        align-items: center;
+        svg {
+          font-size: 18px;
+          margin-right: 8px;
+        }
+      }
+      b {
+        font-size: 16px;
+        color: $c-gray-700;
+      }
+    }
+  }
+}

@@ -6,9 +6,12 @@ import { Container } from "@mui/material";
 import JobsList from "../JobsList";
 import PagePagination from "../PagePagination";
 import FilterJobsList from "../FilterJobsList";
+import SearchBreadcrumbs from "../SearchBreadcrumbs";
 
-function SearchCategories() {
+function SearchJobDetail() {
   const params = useParams();
+  const jobTypeId = params.jobTypeId;
+  const jobDetailId = params.jobDetailId;
   const [searchParams] = useSearchParams();
   const [pageConfig, setPageConfig] = useState({
     currPage: searchParams.get("page") || 1,
@@ -17,7 +20,23 @@ function SearchCategories() {
   });
 
   const [data, setData] = useState([]);
+  const [jobType, setJobType] = useState("");
+  const [jobDetail, setJobDetail] = useState("");
   const [jobsList, setJobsList] = useState([]);
+
+  const breadcrumbsLinkList = [
+    {
+      content: "FIVERR",
+      link: "/",
+    },
+    {
+      content: jobType,
+      link: `/search/categories/${jobTypeId}`,
+    },
+    {
+      content: jobDetail,
+    },
+  ];
 
   const cbSetPageConfig = useCallback((newValue) => {
     setPageConfig(newValue);
@@ -42,11 +61,21 @@ function SearchCategories() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await instance.request({
-          url:
-            "/api/cong-viec/lay-cong-viec-theo-chi-tiet-loai/" + params.jobId,
+        const resJobType = await instance.request({
+          url: `/api/loai-cong-viec/${jobTypeId}`,
           method: "GET",
         });
+        const resJobDetail = await instance.request({
+          url: `/api/chi-tiet-loai-cong-viec/${jobDetailId}`,
+          method: "GET",
+        });
+        const res = await instance.request({
+          url: "/api/cong-viec/lay-cong-viec-theo-chi-tiet-loai/" + jobDetailId,
+          method: "GET",
+        });
+
+        setJobType(resJobType.data.content.tenLoaiCongViec);
+        setJobDetail(resJobDetail.data.content.tenChiTiet);
 
         // Sort 'res' by saoCongViec property
         const resSort = res.data.content
@@ -64,7 +93,7 @@ function SearchCategories() {
         console.log(error);
       }
     })();
-  }, [params.jobId, getJobsOfCurrPage, setPageTotalCount]);
+  }, [jobDetailId, getJobsOfCurrPage, setPageTotalCount]);
 
   useEffect(() => {
     if (lodashIsEmpty(data)) return;
@@ -74,6 +103,7 @@ function SearchCategories() {
   return (
     <div>
       <Container maxWidth="xl">
+        <SearchBreadcrumbs breadcrumbsLinkList={breadcrumbsLinkList} />
         <FilterJobsList />
         <JobsList jobsList={jobsList} />
         <PagePagination
@@ -85,4 +115,4 @@ function SearchCategories() {
   );
 }
 
-export default SearchCategories;
+export default SearchJobDetail;

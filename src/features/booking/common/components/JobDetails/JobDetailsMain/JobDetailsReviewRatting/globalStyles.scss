@@ -1,0 +1,95 @@
+@import "assets/scss/Helpers/mixins.scss";
+@import "assets/scss/Helpers/variables.scss";
+
+.jobDetailsReviewRatting {
+  padding-block: 30px;
+  .heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: $c-gray-500;
+      margin-right: 8px;
+    }
+    .rattingAmount {
+      color: $rattingColor;
+      font-weight: 700;
+    }
+  }
+  .main {
+    .left {
+      li {
+        display: flex;
+        cursor: pointer;
+        button {
+          color: #446ee7;
+          font-weight: 600;
+          transition: 0.4s;
+          border-radius: 4px;
+          padding: 2px 4px;
+          font-size: 16px;
+          min-width: 70px;
+        }
+        & > span {
+          &:nth-of-type(1) {
+            flex: 1;
+            margin-inline: 12px;
+          }
+          &:nth-of-type(2) {
+            display: inline-block;
+            text-align: center;
+            color: #446ee7;
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 60px;
+          }
+        }
+        &.selected {
+          button {
+            color: $whiteColor;
+            background-color: #446ee7;
+            font-weight: 700;
+          }
+        }
+        &.disable {
+          cursor: default;
+          button {
+            color: $c-gray-400;
+          }
+          .MuiSlider-root {
+            color: $c-gray-400 !important;
+          }
+          & > span {
+            &:nth-of-type(2) {
+              color: $c-gray-400;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: $c-gray-500;
+        margin-bottom: 18px;
+      }
+      ul {
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 17px;
+          font-weight: 500;
+          color: $c-gray-400;
+          padding-block: 4px;
+          span {
+            color: $rattingColor;
+          }
+        }
+      }
+    }
+  }
+}

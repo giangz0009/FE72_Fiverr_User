@@ -1,0 +1,68 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.bucketWrapper {
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $c-gray-500;
+    margin-block: 16px;
+    margin-top: 32px;
+    @include res_md {
+      font-size: 28px;
+    }
+  }
+  .bucket {
+    .item {
+      img {
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .content {
+        padding-block: 16px;
+        h3 {
+          font-weight: 700;
+          color: $c-gray-500;
+          font-size: 18px;
+          @include res_md {
+            font-size: 20px;
+          }
+        }
+        ul {
+          margin-top: 12px;
+          li {
+            a {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: 16px;
+              font-weight: 600;
+              color: $c-gray-700;
+              transition: 0.4s;
+              padding-block: 8px;
+              padding-inline: 8px;
+              border-radius: 8px;
+              @include res_md {
+                font-size: 17px;
+              }
+              svg {
+                opacity: 0;
+                visibility: hidden;
+              }
+              &:hover {
+                cursor: pointer;
+                color: $primaryColor;
+                background-color: $c-box-shadow;
+                svg {
+                  opacity: 1;
+                  visibility: visible;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

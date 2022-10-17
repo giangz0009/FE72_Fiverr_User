@@ -1,0 +1,43 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.JobDetailsFAQ {
+  padding-block: 24px;
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: $c-gray-500;
+    margin-bottom: 24px;
+  }
+  .JobDetailsFAQMain {
+    .MuiAccordion-root {
+      margin-block: 0;
+      box-shadow: none;
+      &.Mui-expanded {
+        &::before {
+          background-color: #dadbdd;
+          opacity: 1 !important;
+        }
+      }
+      .MuiAccordionSummary-root {
+        .MuiAccordionSummary-content {
+          margin-block: 16px;
+          p {
+            font-size: 16px;
+            font-weight: 500;
+            color: $c-gray-700;
+          }
+        }
+      }
+      .MuiCollapse-root {
+        .MuiAccordionDetails-root {
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            color: $c-gray-700;
+          }
+        }
+      }
+    }
+  }
+}

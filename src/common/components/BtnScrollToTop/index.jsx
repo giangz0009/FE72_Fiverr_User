@@ -21,12 +21,14 @@ function BtnScrollToTop(props) {
     });
 
     if (isAtHomePage) {
+      // If at home page add scroll listen event for window
       if (trigger) {
         addDataScrolled();
       } else {
         removeDataScrolled();
       }
     } else {
+      // Else remove listen scroll event of window
       addDataScrolled();
     }
 

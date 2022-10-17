@@ -16,7 +16,7 @@ function JobsList({ jobsList }) {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       {renderJobsList()}
     </Grid>
   );

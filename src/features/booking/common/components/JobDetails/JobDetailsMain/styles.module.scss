@@ -1,0 +1,14 @@
+@import "assets/scss/Helpers/mixins.scss";
+@import "assets/scss/Helpers/variables.scss";
+
+.jobDetailsMainWrapper {
+  .jobDetailsMain {
+    padding-block: 20px;
+    @include res_md {
+      padding-right: 40px;
+    }
+  }
+  .jobDetailPayment {
+    height: 100%;
+  }
+}

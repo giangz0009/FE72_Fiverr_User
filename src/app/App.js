@@ -5,11 +5,23 @@ import { fetchSetMenuJobsTypeAction } from "features/booking/action";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
+import { fetchSignInAction } from "features/auth/action";
 
 function App() {
   const dispatch = useDispatch();
 
   const location = useLocation();
+
+  useEffect(() => {
+    const authProfile = localStorage.getItem("authProfile");
+    if (!authProfile) localStorage.removeItem("authProfile");
+    else {
+      const authData = JSON.parse(authProfile);
+      const authId = authData.id;
+
+      dispatch(fetchSignInAction(authId));
+    }
+  });
 
   useEffect(() => {
     dispatch(fetchSetMenuJobsTypeAction);

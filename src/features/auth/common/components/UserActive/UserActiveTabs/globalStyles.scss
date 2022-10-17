@@ -1,0 +1,21 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.userActiveTabs {
+  background-color: $whiteColor;
+  border-radius: 8px;
+  border: 1px solid $c-border;
+  box-shadow: 0 0 8px $c-box-shadow;
+  .tabs {
+    .tab {
+      padding: 24px;
+      &.Mui-selected {
+        color: $c-gray-500;
+        font-weight: 700;
+      }
+    }
+    .MuiTabs-indicator {
+      background-color: $primaryColor;
+    }
+  }
+}

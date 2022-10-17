@@ -28,6 +28,15 @@
     color: $c-gray-500;
   }
 }
+@mixin grayOutlined {
+  border: 1px solid $c-gray-600;
+  color: $c-gray-600;
+  transition: 0.4s;
+  &:hover {
+    background-color: $c-gray-600;
+    color: $whiteColor;
+  }
+}
 
 @mixin limitLine($limitLine: 2) {
   overflow: hidden;

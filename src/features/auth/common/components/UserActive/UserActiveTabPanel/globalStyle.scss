@@ -1,0 +1,113 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.userActiveTabPanel {
+  background-color: $whiteColor;
+  border-radius: 8px;
+  border: 1px solid $c-border;
+  box-shadow: 0 0 8px $c-box-shadow;
+  margin-top: 24px;
+  max-height: 550px;
+  overflow-y: scroll;
+  .tabPanel {
+    .emptyBlock {
+      padding-block: 40px;
+      svg {
+        margin: 0 auto;
+      }
+      h3 {
+        text-align: center;
+        margin-top: 32px;
+        font-weight: 600;
+        color: $c-gray-500;
+        font-size: 20px;
+      }
+    }
+    &.bookingHistoryList {
+      .bookingHistoryItem {
+        border: 1px solid $c-border;
+        margin-block: 16px;
+        position: relative;
+        .img {
+          img {
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+        .jobInfo {
+          h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: $c-gray-500;
+          }
+          p {
+            font-size: 16px;
+            font-weight: 500;
+            color: $c-gray-700;
+            @include limitLine(4);
+          }
+          .ratting {
+            padding-top: 16px;
+            display: flex;
+            align-items: center;
+            .mainRate {
+              display: flex;
+              align-items: center;
+              & > span {
+                color: $rattingColor;
+                font-weight: 600;
+              }
+            }
+            .commentAmount {
+              padding-left: 16px;
+              font-weight: 600;
+              color: $c-gray-600;
+              font-size: 14px;
+            }
+            .bookingDate {
+              flex: 1;
+              display: flex;
+              justify-content: flex-end;
+              font-weight: 600;
+              color: $c-gray-400;
+            }
+          }
+        }
+        .completeStatus {
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(20%, -20%);
+          font-weight: 700;
+          font-size: 14px;
+          color: $c-gray-400;
+          border-radius: 12px;
+          border: 1px solid $c-gray-400;
+          padding-inline: 4px;
+          background-color: $whiteColor;
+        }
+        &.completed {
+          .completeStatus {
+            color: $primaryColor;
+            border-color: $primaryColor;
+          }
+        }
+      }
+    }
+    &.createdJobList {
+      .createBtn {
+        width: 100%;
+        text-align: right;
+        button {
+          display: inline-block;
+          padding: 8px 16px;
+          font-weight: 600;
+          color: $whiteColor;
+          border-radius: 8px;
+          @include primaryContained();
+        }
+      }
+    }
+  }
+}

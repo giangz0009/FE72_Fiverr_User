@@ -1,0 +1,90 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.sellerSegmentationForm {
+  padding-block: 24px;
+  &:not(:last-child) {
+    border-bottom: 1px solid $c-border;
+  }
+  h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-size: 18px;
+      font-weight: 700;
+      color: $c-gray-500;
+    }
+    button {
+      color: #00698c;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .sellerSegmentationFormMain {
+    .skillsList {
+      font-size: 16px;
+      font-weight: 600;
+      color: $c-gray-600;
+      padding-block: 16px;
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-block: 4px;
+        .action {
+          svg {
+            font-size: 20px;
+            margin-inline: 4px;
+          }
+        }
+      }
+    }
+    .formGroup {
+      background-color: $c-bg;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      input {
+        width: 100%;
+        background-color: transparent;
+        outline: none;
+        border: 1px solid $c-border;
+        border-radius: 8px;
+        padding: 8px;
+      }
+      button {
+        width: 50%;
+        margin-top: 16px;
+        padding-block: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 16px;
+        transition: 0.4s;
+        &:hover {
+          opacity: 0.8;
+        }
+        &:disabled {
+          opacity: 0.6;
+        }
+        &.cancel {
+          background-color: $whiteColor;
+          color: $c-gray-600;
+          border: 1px solid $c-gray-400;
+        }
+        &.submit {
+          background-color: $primaryColor;
+          color: $whiteColor;
+        }
+      }
+    }
+    & > span {
+      color: $c-gray-600;
+      font-weight: 600;
+      margin-top: 12px;
+      display: inline-block;
+    }
+  }
+}

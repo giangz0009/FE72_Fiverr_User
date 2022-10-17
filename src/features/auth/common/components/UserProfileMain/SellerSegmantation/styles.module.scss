@@ -1,0 +1,11 @@
+@import "assets/scss/Helpers/variables.scss";
+@import "assets/scss/Helpers/mixins.scss";
+
+.sellerSegmentation {
+  background-color: $whiteColor;
+  border-radius: 8px;
+  border: 1px solid $c-border;
+  box-shadow: 0 0 8px $c-box-shadow;
+  padding: 16px 30px;
+  margin-top: 24px;
+}

@@ -1,9 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 function Search() {
   return (
-    <div style={{ marginTop: 130, paddingBlock: 40 }}>
+    <div className={styles.search}>
       <Outlet />
     </div>
   );

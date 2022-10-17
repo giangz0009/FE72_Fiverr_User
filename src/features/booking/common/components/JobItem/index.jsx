@@ -5,15 +5,21 @@ import React, { memo } from "react";
 
 import styles from "./styles.module.scss";
 import BasicRating from "common/components/BasicRatting";
+import { useNavigate } from "react-router-dom";
 
 function JobItem({ job }) {
-  const { hinhAnh, moTaNgan, tenCongViec, danhGia, saoCongViec, giaTien } =
+  const { id, hinhAnh, moTaNgan, tenCongViec, danhGia, saoCongViec, giaTien } =
     job.congViec;
   const { avatar, tenNguoiTao } = job;
 
+  const navigate = useNavigate();
+
   return (
-    <Grid xs={6} sm={4} lg={3}>
-      <div className={styles.jobItem}>
+    <Grid xs={12} sm={6} md={4} lg={3}>
+      <div
+        className={styles.jobItem}
+        onClick={() => navigate(`/jobDetails/${id}`)}
+      >
         <header className={styles.header}>
           <img src={hinhAnh} alt="job desc" />
         </header>

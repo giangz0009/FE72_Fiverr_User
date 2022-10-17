@@ -1,0 +1,66 @@
+@import "assets/scss/Helpers/mixins.scss";
+@import "assets/scss/Helpers/variables.scss";
+
+.jobDetailsAbout {
+  padding-block: 24px;
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: $c-gray-500;
+    padding-bottom: 24px;
+  }
+  .jobDetailsAboutMain {
+    border-bottom: 1px solid $c-border;
+    & > p {
+      font-size: 16px;
+      font-weight: 700;
+      color: $c-gray-700;
+      padding-block: 12px;
+    }
+    .moreDesc {
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: $c-gray-700;
+      }
+      ul {
+        padding-block: 8px;
+        list-style: disc;
+        padding-inline: 24px;
+        li {
+          padding-block: 2px;
+          font-size: 18px;
+          color: $c-gray-700;
+        }
+      }
+    }
+  }
+  & > ul {
+    padding-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    & > li {
+      display: block;
+      width: calc(100% / 3);
+      p {
+        font-size: 18px;
+        font-weight: 600;
+        color: $c-gray-400;
+      }
+      ul {
+        padding-inline: 12px;
+        li {
+          display: inline-block;
+          font-size: 16px;
+          font-weight: 500;
+          color: $c-gray-700;
+          &:not(:last-child) {
+            &::after {
+              content: " , ";
+            }
+          }
+        }
+      }
+    }
+  }
+}

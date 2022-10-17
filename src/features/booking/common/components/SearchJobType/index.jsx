@@ -3,7 +3,7 @@ import instance from "app/instance";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HerosBanner from "../HerosBanner";
-import MostPopularCarousel from "../MostPopularCarousel";
+import SearchBucket from "../SearchBucket";
 
 function SearchJobType() {
   const params = useParams();
@@ -26,13 +26,11 @@ function SearchJobType() {
     })();
   }, [jobTypeId]);
 
-  console.log(data.tenLoaiCongViec);
-
   return (
     <div>
       <Container maxWidth="xl">
         <HerosBanner jobTypeId={jobTypeId} />
-        <MostPopularCarousel jobTypeName={data.tenLoaiCongViec ?? "Job Type"} />
+        <SearchBucket data={data} />
       </Container>
     </div>
   );

@@ -1,0 +1,30 @@
+@import "assets/scss/Helpers/mixins.scss";
+@import "assets/scss/Helpers/variables.scss";
+
+.jobDetailsTopNavWrapper {
+  border-bottom: 1px solid $c-border;
+  background-color: $whiteColor;
+  display: none;
+  @include res_lg {
+    display: block;
+  }
+  .jobDetailsTopNav {
+    a {
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: $c-gray-400;
+      transition: 0.4s;
+      display: inline-block;
+      &:hover {
+        color: $primaryColor;
+        cursor: pointer;
+      }
+      &.active {
+        color: $primaryColor;
+        border-bottom: 4px solid $primaryColor;
+        border-style: inset;
+      }
+    }
+  }
+}
