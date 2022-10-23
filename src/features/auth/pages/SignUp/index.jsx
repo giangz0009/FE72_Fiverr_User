@@ -222,11 +222,11 @@ function SignUp() {
                 <p>{formik.errors.gender}</p>
               ) : null}
             </div>
+            <p>
+              You already have an account, <Link to="/signIn">click here</Link>
+            </p>
             <button type="submit">submit</button>
           </form>
-          <p>
-            You already have an account, <Link to="/signIn">click here</Link>
-          </p>
         </div>
       </Container>
       <Dialog

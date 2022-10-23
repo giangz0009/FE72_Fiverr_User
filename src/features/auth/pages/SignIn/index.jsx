@@ -121,11 +121,11 @@ function SignIn() {
                 <p>{formik.errors.password}</p>
               ) : null}
             </div>
+            <p>
+              You don't have an account, <Link to="/signUp">click here</Link>
+            </p>
             <button type="submit">submit</button>
           </form>
-          <p>
-            You don't have an account, <Link to="/signUp">click here</Link>
-          </p>
         </div>
       </Container>
       <Dialog
