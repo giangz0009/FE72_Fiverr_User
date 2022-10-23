@@ -21,7 +21,7 @@ import {
   TextField,
 } from "@mui/material";
 import instance from "app/instance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import lodashIsEmpty from "lodash.isempty";
@@ -224,6 +224,9 @@ function SignUp() {
             </div>
             <button type="submit">submit</button>
           </form>
+          <p>
+            You already have an account, <Link to="/signIn">click here</Link>
+          </p>
         </div>
       </Container>
       <Dialog

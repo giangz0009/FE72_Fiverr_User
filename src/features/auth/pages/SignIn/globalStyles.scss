@@ -77,6 +77,15 @@
           @include primaryContained();
         }
       }
+      & > p {
+        font-size: 17px;
+        font-weight: 500;
+        color: $c-gray-700;
+        text-align: center;
+        a {
+          color: $primaryColor;
+        }
+      }
     }
   }
 }

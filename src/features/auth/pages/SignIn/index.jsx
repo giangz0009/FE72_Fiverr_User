@@ -14,7 +14,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import instance from "app/instance";
 import { useSelector } from "react-redux";
 
@@ -123,6 +123,9 @@ function SignIn() {
             </div>
             <button type="submit">submit</button>
           </form>
+          <p>
+            You don't have an account, <Link to="/signUp">click here</Link>
+          </p>
         </div>
       </Container>
       <Dialog
